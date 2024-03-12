@@ -2,6 +2,7 @@
 'dim i as an integer, set equal to 2 (the first row of data in the sheets)
 'dimlare current_ticker as string, to be used for looping within one ticker at a time
 'dim year_open, year_close as double, to be used for getting the open and close of the beginning/end of the year
+'dim yearly_change, percent_change as double, to be used for the summary table's formulas
 'dim total_volume as integer, set equal to 0, to be used to add each row's volume for each ticker and getting the total for each ticker
 'dim j as integer, set equal to 2, to be used to output totals for each ticker into their own rows in the summary table, iterating by 1 for each ticker change
 
@@ -21,7 +22,7 @@
     'While Cells(i, 1).Value = current_ticker
 
         'setting year_open to the first row's "open" of a ticker by using if statement to check if it's empty
-        'this will prevent the variable from being overwrriten within the loop's iterations
+            'this will prevent the variable from being overwrriten within the loop's iterations
         'If IsEmpty(year_open) Then
             'year_open = Cells(i, 3).Value
         'End if
@@ -37,7 +38,16 @@
     '(i - 1) used to get the last row of the previous ticker, AKA the end of the year
     'year_close = Cells((i - 1), 6).Value
 
-    '____more code_____
+    'find the yearly change using year_open and year_close, output to the summary table
+    'yearly_change = year_close - year_open
+    'Cells(j, 10).Value = yearly_change
+
+    'find the percent change and output to the summary table
+    'percent_change = yearly_change / year_open
+    'Cells(j, 11).Value = percent_change
+
+    'output the total_volume to the summary table
+    'Cells(j, 12).Value = total_volume
 
     'reset year_open and year_close to 0 for use in next ticker
     'year_open = 0
