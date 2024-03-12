@@ -1,10 +1,17 @@
 
-'dim i as an integer, set equal to 2 (the first row of data in the sheets)
-'dimlare current_ticker as string, to be used for looping within one ticker at a time and output the ticker to the summary table
+'dim i as integer, to be used to go through each row in the table
+'dim current_ticker as string, to be used for looping within one ticker at a time and output the ticker to the summary table
 'dim year_open, year_close as double, to be used for getting the open and close of the beginning/end of the year
 'dim yearly_change, percent_change as double, to be used for the summary table's formulas
-'dim total_volume as integer, set equal to 0, to be used to add each row's volume for each ticker and getting the total for each ticker
-'dim j as integer, set equal to 2, to be used to output totals for each ticker into their own rows in the summary table, iterating by 1 for each ticker change
+'dim total_volume as double, to be used to add each row's volume for each ticker and getting the total for each ticker
+'dim j as integer, to be used to output totals for each ticker into their own rows in the summary table, iterating by 1 for each ticker change
+
+'assign values to variables
+'i = 2
+'j = 2
+'total_volume = 0
+'year_open = 0
+'year_close = 0
 
 'set column names for the summary table
 'Cells(1, 9).Value = "Ticker"
@@ -22,16 +29,16 @@
     'loop through a ticker
     'While Cells(i, 1).Value = current_ticker
 
-        'setting year_open to the first row's "open" of a ticker by using if statement to check if it's empty
+        'setting year_open to the first row's "open" of a ticker by using if statement to check if it's 0
             'this will prevent the variable from being overwrriten within the loop's iterations
-        'If IsEmpty(year_open) Then
+        'If year_open = 0 Then
             'year_open = Cells(i, 3).Value
         'End if
 
         'add row's volume to the "total_volume" variable
         'total_volume = total_volume + Cells(i, 7).Value
 
-        ' move on to the next row by adding 1 to i
+        'move on to the next row by adding 1 to i
         'i = i + 1
 
     'wend
