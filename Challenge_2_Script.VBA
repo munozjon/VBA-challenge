@@ -1,6 +1,6 @@
 
 'dim i as an integer, set equal to 2 (the first row of data in the sheets)
-'dimlare current_ticker as string, to be used for looping within one ticker at a time
+'dimlare current_ticker as string, to be used for looping within one ticker at a time and output the ticker to the summary table
 'dim year_open, year_close as double, to be used for getting the open and close of the beginning/end of the year
 'dim yearly_change, percent_change as double, to be used for the summary table's formulas
 'dim total_volume as integer, set equal to 0, to be used to add each row's volume for each ticker and getting the total for each ticker
@@ -15,8 +15,9 @@
 'loop through the table while there is data in the row
 'While Not IsEmpty(Cells(i, 1).Value)
     
-    'set current_ticker to the current_row's ticker
+    'set current_ticker to the current_row's ticker and add the ticker to the summary table
     'current_ticker = Cells(i, 1).Value
+    'Cells(j, 9).Value = current_ticker
 
     'loop through a ticker
     'While Cells(i, 1).Value = current_ticker
@@ -49,9 +50,10 @@
     'output the total_volume to the summary table
     'Cells(j, 12).Value = total_volume
 
-    'reset year_open and year_close to 0 for use in next ticker
+    'reset year_open, year_close, and total_volume to 0 for use in next ticker
     'year_open = 0
     'year_close = 0
+    'total_volume = 0
 
     'move to the next row for the summary table
     'j = j + 1
