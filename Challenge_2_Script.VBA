@@ -55,6 +55,15 @@ Sub stocks_summary():
             yearly_change = year_close - year_open
             ws.Cells(j, 10).Value = yearly_change
 
+            'conditional format for yearly_change
+            If yearly_change > 0 Then
+                ws.Cells(j, 10).Interior.ColorIndex = 4
+            ElseIf yearly_change < 0 Then
+                ws.Cells(j, 10).Interior.ColorIndex = 3
+            Else
+                ws.Cells(j, 10).Interior.ColorIndex = 0
+            End If
+
             'find the percent change and output to the summary table using FormatPercent
             'using if statement to handle any division by zero or no changes
             if year_open <> 0 And yearly_change <> 0 Then
