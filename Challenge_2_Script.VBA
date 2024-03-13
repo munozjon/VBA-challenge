@@ -1,10 +1,10 @@
 
-'dim i as integer, to be used to go through each row in the table
+'dim i as long, to be used to go through each row in the table
 'dim current_ticker as string, to be used for looping within one ticker at a time and output the ticker to the summary table
-'dim year_open, year_close as double, to be used for getting the open and close of the beginning/end of the year
-'dim yearly_change, percent_change as double, to be used for the summary table's formulas
+'dim year_open as double, year_close as double, to be used for getting the open and close of the beginning/end of the year
+'dim yearly_change as double, percent_change as double, to be used for the summary table's formulas
 'dim total_volume as double, to be used to add each row's volume for each ticker and getting the total for each ticker
-'dim j as integer, to be used to output totals for each ticker into their own rows in the summary table, iterating by 1 for each ticker change
+'dim j as long, to be used to output totals for each ticker into their own rows in the summary table, iterating by 1 for each ticker change
 
 'assign values to variables
 'i = 2
@@ -87,8 +87,3 @@ Sub stocks_summary():
     Wend
     'some code
 End Sub
-
-
-
-'iterating through multiple worksheets:
-    'For each ws in Worksheets
