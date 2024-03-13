@@ -50,9 +50,9 @@
     'yearly_change = year_close - year_open
     'Cells(j, 10).Value = yearly_change
 
-    'find the percent change and output to the summary table
+    'find the percent change and output to the summary table using FormatPercent
     'percent_change = yearly_change / year_open
-    'Cells(j, 11).Value = percent_change
+    'Cells(j, 11).Value = FormatPercent(percent_change)
 
     'output the total_volume to the summary table
     'Cells(j, 12).Value = total_volume
