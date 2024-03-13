@@ -86,6 +86,43 @@ Sub stocks_summary():
 
         wend
 
+    'if statement will change these variables to go in the right directions
+    'set current_great_decrease to first percent
+    'set current_decrease_ticker to first percent's ticker
+    'set current_great_increase to first percent
+    'set current_increase_ticker to first percent's ticker
+    
+    'set current_great_volume to first total volume
+    'set current_volume_ticker to first total volume's ticker
+    
+    'set table's headers and row labels
+    'cells in row 1, columns P and Q = ticker, value
+    'cells in rows 2-4, column O = greatest % inc, greatest % dec, greatest total vol
+        
+    'loop through summary table by row
+        'if current row's percent is positive then
+            'if current row's percent is greater than current_great_increase then
+                'current_great_increase = current row's percent
+                'current_increase_ticker =current row's ticker
+            'end if
+        'elseif current_row's percent is negative then
+            'if current row's percent is less than current_great_decrease then
+                'current_great_decrease = current row's percent
+                'current_decrease_ticker = current row's ticker
+            'end if
+        '>>> do I need an "else" statement here to account for zero percent?
+        'end if
+        
+        'if current row's total volume is greater than current_great_volume then
+            'current_great_volume = current row's total volume
+            'current_volume_ticker = current row's ticker
+        'end if
+        
+    'next row
+    
+    'output current_great_decrease, current_great_increase, and current_great_volume along with their tickers
+    'to the new table
+
     Next ws
 
 End Sub
