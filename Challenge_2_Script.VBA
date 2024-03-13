@@ -30,8 +30,9 @@ Sub stocks_summary():
         While Cells(i, 1).Value = current_ticker
 
             'setting year_open to the first row's "open" of a ticker by using if statement to check if it's 0
+                ' and if the "open" column has a value for that row
                 'this will prevent the variable from being overwrriten within the loop's iterations
-            If year_open = 0 Then
+            If year_open = 0 And Not IsEmpty(Cells(i, 3).Value) Then
                 year_open = Cells(i, 3).Value
             End if
 
@@ -51,9 +52,14 @@ Sub stocks_summary():
         Cells(j, 10).Value = yearly_change
 
         'find the percent change and output to the summary table using FormatPercent
-        percent_change = yearly_change / year_open
-        Cells(j, 11).Value = FormatPercent(percent_change)
-
+        'using if statement to handle any division by zero or no changes
+        if year_open <> 0 And yearly_change <> 0 Then
+            percent_change = yearly_change / year_open
+            Cells(j, 11).Value = FormatPercent(percent_change)
+        Else
+            Cells(j, 11).Value = "N/A"
+        End if
+        
         'output the total_volume to the summary table
         Cells(j, 12).Value = total_volume
 
