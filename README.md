@@ -3,7 +3,7 @@
 ## Module 2 Challenge
 For this assignment, I analyzed stock market data from 2018-2020 using VBA scripting. I returned the yearly change, percent change, and the total stock volume for each stock ticker across the three years on different worksheets. Then, for each year, I find and return the greatest percentage increase and decrease for a stock ticker for the given year, as well as that year's greatest total volume stock.
 
-# How It Works
+## How It Works
 I begin by declaring all my variables I will need throughout the script, including a variable to loop through each worksheet in the file. I start with a 'for loop' to go through each worksheet, then assign values for certain variables to use within the script, followed by creating summary table headers next to the data.
 
 I then begin a 'while loop' to go down the first column while there is a value in that cell, and assign the 'current_ticker' variable to that row's ticker as well as adding the ticker to the summary table. I then loop through the rows while the row's ticker is equal to the 'current_ticker' variable, where I then do three things: I assign the 'open' price for the ticker from the beginning of that year to a variable, I add that row's 'vol' value to a 'total_volume' variable, and then move on to the next row.
