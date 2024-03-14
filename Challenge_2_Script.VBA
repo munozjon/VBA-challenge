@@ -88,6 +88,15 @@ Sub stocks_summary():
                 ws.Cells(j, 11).Value = 0
             End if
 
+            'conditional format for percent_change
+            If percent_change > 0 Then
+                ws.Cells(j, 11).Interior.ColorIndex = 4
+            ElseIf percent_change < 0 Then
+                ws.Cells(j, 11).Interior.ColorIndex = 3
+            Else
+                ws.Cells(j, 11).Interior.ColorIndex = 0
+            End If
+
             'output the total_volume to the summary table
             ws.Cells(j, 12).Value = total_volume
 
