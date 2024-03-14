@@ -7,6 +7,10 @@ Sub stocks_summary():
     dim j as long 'to be used to output totals for each ticker into their own rows in the summary table, iterating by 1 for each ticker change
     dim ws as Worksheet 'to use for iterating through each worksheet in the file
 
+    dim increase_number as double, decrease_number as double, volume_number as double
+    dim increase_ticker as string, decrease_ticker as string, volume_ticker as string
+    dim s as long
+
     'loop through each worksheet
     For Each ws In Worksheets
 
@@ -16,12 +20,22 @@ Sub stocks_summary():
         total_volume = 0
         year_open = 0
         year_close = 0
+        s = 2
+
 
         'set column names for the summary table
         ws.Cells(1, 9).Value = "Ticker"
         ws.Cells(1, 10).Value = "Yearly Change"
         ws.Cells(1, 11).Value = "Percent Change"
         ws.Cells(1, 12).Value = "Total Stock Volume"
+
+        'set table's headers and row labels
+        ws.Cells(1, 16).Value = "Ticker"
+        ws.Cells(1, 17).Value = "Value"
+        ws.Cells(2, 15).Value = "Greatest % Increase"
+        ws.Cells(3, 15).Value = "Greatest % Decrease"
+        ws.Cells(4, 15).Value = "Greatest Total Volume"
+        
 
         'loop through the table while there is data in the row
         While Not IsEmpty(ws.Cells(i, 1).Value)
@@ -70,7 +84,7 @@ Sub stocks_summary():
                 percent_change = yearly_change / year_open
                 ws.Cells(j, 11).Value = FormatPercent(percent_change)
             Else
-                ws.Cells(j, 11).Value = "N/A"
+                ws.Cells(j, 11).Value = 0
             End if
 
             'output the total_volume to the summary table
@@ -86,42 +100,54 @@ Sub stocks_summary():
 
         wend
 
-    'if statement will change these variables to go in the right directions
-    'set current_great_decrease to first percent
-    'set current_decrease_ticker to first percent's ticker
-    'set current_great_increase to first percent
-    'set current_increase_ticker to first percent's ticker
-    
-    'set current_great_volume to first total volume
-    'set current_volume_ticker to first total volume's ticker
-    
-    'set table's headers and row labels
-    'cells in row 1, columns P and Q = ticker, value
-    'cells in rows 2-4, column O = greatest % inc, greatest % dec, greatest total vol
-        
+    'setting variables for greatest increase, decrease in percentage, and greatest volume
+    increase_number = ws.Cells(2, 11).Value
+    increase_ticker = ws.Cells(2, 9).Value
+    decrease_number = ws.Cells(2, 11).Value
+    decrease_ticker = ws.Cells(2, 9).Value
+    volume_number = ws.Cells(2, 12).Value
+    volume_ticker = ws.Cells(2, 9).Value
+
     'loop through summary table by row
-        'if current row's percent is positive then
-            'if current row's percent is greater than current_great_increase then
-                'current_great_increase = current row's percent
-                'current_increase_ticker =current row's ticker
-            'end if
-        'elseif current_row's percent is negative then
-            'if current row's percent is less than current_great_decrease then
-                'current_great_decrease = current row's percent
-                'current_decrease_ticker = current row's ticker
-            'end if
-        '>>> do I need an "else" statement here to account for zero percent?
-        'end if
+    While Not IsEmpty(ws.Cells(s, 9).Value)
+
+        'check if percent change is positive or negative
+        If ws.Cells(s, 11).Value > 0 Then
+            
+            'check if value is greater than increase_number
+            If ws.Cells(s, 11).Value > increase_number Then
+                increase_number = ws.Cells(s, 11).Value
+                increase_ticker = ws.Cells(s, 9).Value
+            End If
         
-        'if current row's total volume is greater than current_great_volume then
-            'current_great_volume = current row's total volume
-            'current_volume_ticker = current row's ticker
-        'end if
+        ElseIf ws.Cells(s, 11).Value < 0 Then
+
+            'check if value is less than decrease_number
+            If ws.Cells(s, 11).Value < decrease_number Then
+                decrease_number = ws.Cells(s, 11).Value
+                decrease_ticker = ws.Cells(s, 9).Value
+            End If
+
+        End If
         
-    'next row
+        'check if total stock volume is greater than volume_number
+        If ws.Cells(s, 12).Value > volume_number Then
+            volume_number = ws.Cells(s, 12).Value
+            volume_ticker = ws.Cells(s, 9).Value
+        End If
+
+        s = s + 1
+    wend
     
-    'output current_great_decrease, current_great_increase, and current_great_volume along with their tickers
-    'to the new table
+    'output increase_number, decrease_number, and volume_number to table along with their tickers
+    ws.Cells(2, 16).Value = increase_ticker
+    ws.Cells(2, 17).Value = FormatPercent(increase_number)
+
+    ws.Cells(3, 16).Value = decrease_ticker
+    ws.Cells(3, 17).Value = FormatPercent(decrease_number)
+
+    ws.Cells(4, 16).Value = volume_ticker
+    ws.Cells(4, 17).Value = volume_number
 
     Next ws
 
