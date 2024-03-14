@@ -7,6 +7,7 @@ Sub stocks_summary():
     dim j as long 'to be used to output totals for each ticker into their own rows in the summary table, iterating by 1 for each ticker change
     dim ws as Worksheet 'to use for iterating through each worksheet in the file
 
+    'declaring variables to be used to get values for the second table
     dim increase_number as double, decrease_number as double, volume_number as double
     dim increase_ticker as string, decrease_ticker as string, volume_ticker as string
     dim s as long
