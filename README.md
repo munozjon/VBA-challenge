@@ -1,2 +1,15 @@
 # VBA-challenge
-Module 2 Challenge
+
+## Module 2 Challenge
+For this assignment, I analyzed stock market data from 2018-2020 using VBA scripting. I returned the yearly change, percent change, and the total stock volume for each stock ticker across the three years on different worksheets. Then, for each year, I find and return the greatest percentage increase and decrease for a stock ticker for the given year, as well as that year's greatest total volume stock.
+
+# How It Works
+I begin by declaring all my variables I will need throughout the script, including a variable to loop through each worksheet in the file. I start with a 'for loop' to go through each worksheet, then assign values for certain variables to use within the script, followed by creating summary table headers next to the data.
+
+I then begin a 'while loop' to go down the first column while there is a value in that cell, and assign the 'current_ticker' variable to that row's ticker as well as adding the ticker to the summary table. I then loop through the rows while the row's ticker is equal to the 'current_ticker' variable, where I then do three things: I assign the 'open' price for the ticker from the beginning of that year to a variable, I add that row's 'vol' value to a 'total_volume' variable, and then move on to the next row.
+
+Before the loop moves on to the next ticker, I do the appropriate calculations for that ticker. I get the 'close' price for that ticker and use it along with the 'open' price to calculate the yearly change for the ticker and output it to the summary table. I then conditionally format that cell to highlight red if the value is negative and green if it is positive (and none if the value is 0). I then calculate the percent change for the ticker, output it to the summary table, and conditionally format it in a similar fashion. I also output the total sum of the volume for that ticker to the summary table, before resetting those variables and moving on to the next ticker.
+
+After the code loops through the entire data set for the worksheet, I then begin working on the next summary table for the greatest percent increase, greatest percent decrease, and greatest total volume. I assign variables for those conditions to their own variables (along with separate variables for their tickers) and then loop through the summary table (while the ticker column has a value). For each ticker, I check if the 'percent change' value is positive or negative. If it's positive, I check if the value is greater than the variable assigned, and if it is, then I reassign that variable to be it. Similarly, if it's negative and the value is less than the variable used to check for this, I reassign the variable accordingly. At the same time, I check if the ticker's 'total stock volume' is greater than the variable assigned and reassign it if it is. After the loop goes through each ticker, I return the value of those variables to the second table next to the summary table.
+
+Finally, the 'for loop' moves on to the next year's worksheet and begins the process again for the next data set.
